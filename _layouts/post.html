@@ -7,8 +7,32 @@ layout: default
 	<div class="wrap">
 
 		<h1>{{ page.title }}</h1>
-		<p>{{ page.date | date_to_long_string }}</p>
-
+		<p>{{ page.date | date_to_long_string }} 
+			<span> • <i class="fa fa-clock"></i> {% include read_time.html %}</span>
+			<br>
+			<span class="post-categories"> Categories :
+			  {% if post %}
+			    {% assign categories = post.categories %}
+			  {% else %}
+			    {% assign categories = page.categories %}
+			  {% endif %}
+			  {% for category in categories %}
+			  <a target="_self" href="{{ site.url }}/blog/categories/#{{category|slugize}}">{{category}}</a>
+			  {% unless forloop.last %}&nbsp;{% endunless %}
+			  {% endfor %}
+			</span><br>
+			<span class="post-tags"> Tags :
+			  {% if post %}
+			    {% assign tags = post.tags %}
+			  {% else %}
+			    {% assign tags = page.tags %}
+			  {% endif %}
+			  {% for tag in tags %}
+			  <a target="_self" href="{{ site.url }}/blog/tags/#{{tag|slugize}}">#{{tag}}</a>
+			  {% unless forloop.last %}&nbsp;{% endunless %}
+			  {% endfor %}
+			</span>
+		</p>
 	</div>
 
 </section>
@@ -20,5 +44,56 @@ layout: default
 		{{ page.content }}
 
 	</div>
+
+	<hr>
+
+	<div class="related">
+	    <div>
+	    <h3>Recent Posts</h3>
+	    <ul class="related-posts">
+	      {% for post in site.related_posts limit:2 %}
+	          <p>
+	            <li><a href="{{ site.baseurl }}{{ post.url }}">
+	            	{{ post.title }} • {{ post.date | date_to_long_string }}
+	            </a></li>
+	          </p>
+	      {% endfor %}
+	    </ul>
+	  </div>
+	  <br><br>
+	  <div class="PageNavigation">
+	    {% if page.previous.url %}
+	      <p><a class="prev" href="{{ site.baseurl }}{{ page.previous.url }}">&laquo; {{ page.previous.title }}</a></p>
+	    {% endif %}
+	    {% if page.next.url %}
+	      <p><a class="next" href="{{ site.baseurl }}{{ page.next.url }}">{{ page.next.title }} &raquo;</a></p>
+	    {% endif %}
+	  </div>
+	</div>
+
+	<hr>
+
+	{% if page.comments %}
+	<div id="disqus_thread"></div>
+	<script>
+
+	/**
+	*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+	*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+	/*
+	var disqus_config = function () {
+	this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+	this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+	};
+	*/
+	(function() { // DON'T EDIT BELOW THIS LINE
+	var d = document, s = d.createElement('script');
+	s.src = 'https://vchrombies-diary.disqus.com/embed.js';
+	s.setAttribute('data-timestamp', +new Date());
+	(d.head || d.body).appendChild(s);
+	})();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>                    
+	{% endif %}
 
 </section>

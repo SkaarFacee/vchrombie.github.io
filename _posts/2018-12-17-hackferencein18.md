@@ -2,6 +2,9 @@
 title: 'Hackference India 18 -  First ever Hackathon!!'
 date: 2018-12-17 00:00:00
 featured_image: '/images/hackferencein18/main.jpeg'
+comments: true
+tags: hackathon hackference diversity bangalore GitHub
+categories: Hackthon Conference OpenSource
 excerpt: Well, I have attended the first ever Hackathon of my life. So, I would like to tell about my experience of it right from our journey to the hack we made in the short span of 1440 minutes.
 ---
 
