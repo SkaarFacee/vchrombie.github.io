@@ -1,0 +1,59 @@
+site: Journal Jekyll Theme
+
+name:         Venu's Blog
+description:  VCHR0MBI3'S Diary is a personal and professional blog that Venu started as a hobby first, but he managed to turn it into a technical blog over the time. He created this website in order to bring his interests. Be sure to subscribe to keep up to date! That is what helped him turn his blog into a successful one – his passion for helping others, apart from the excellent knowledge on the subject of his writing, of course. His motto is- “Make it happen and he lives (and writes) by that slogan.
+url:          http://vchrombie.github.io
+
+
+collections:
+  pages:
+    output: true
+    permalink: /:name
+  posts:
+    output: true
+    permalink: /blog/:slug
+  projects:
+    output: true
+    permalink: /project/:slug
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  -
+    scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  
+sass:
+  style: compressed
+
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+
+paginate: 6
+paginate_path: "/blog/page:num/"
+  
